@@ -26,8 +26,12 @@ public class CarController {
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public CarDTO getCarById(@PathVariable Long id) {
-        return carService.findById(id);
+    public ResponseEntity<CarDTO> getCarById(@PathVariable Long id) {
+        CarDTO carDTO = carService.findById(id);
+        if(carDTO==null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(carDTO);
     }
 
     @PutMapping(value = "/{id}", consumes = "application/json")
@@ -37,7 +41,7 @@ public class CarController {
     }
 
     @PostMapping(consumes = "application/json")
-    public ResponseEntity createCar(@RequestBody CarDTO car) {
+    public ResponseEntity<Void> createCar(@RequestBody CarDTO car) {
         Car carEntity = Car.fromDTO(car);
         carEntity.setId(sequenceGeneratorService.generateSequence(Car.SEQUENCE_NAME));
         carService.create(carEntity);
@@ -45,7 +49,8 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCar(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
         carService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
