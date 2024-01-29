@@ -1,16 +1,19 @@
 package com.bevilacqua1996.cars.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Entity
+@Document(collection = "cars")
 public class Car {
 
+    @Transient
+    public static final String SEQUENCE_NAME = "cars_sequence";
+
     @Id
-    @GeneratedValue
     private Long id;
 
     private String brand;

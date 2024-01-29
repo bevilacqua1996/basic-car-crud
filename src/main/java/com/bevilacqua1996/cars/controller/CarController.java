@@ -3,6 +3,7 @@ package com.bevilacqua1996.cars.controller;
 import com.bevilacqua1996.cars.entity.Car;
 import com.bevilacqua1996.cars.entity.CarDTO;
 import com.bevilacqua1996.cars.service.CarService;
+import com.bevilacqua1996.cars.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import java.util.List;
 public class CarController {
     @Autowired
     CarService carService;
+
+    @Autowired
+    SequenceGeneratorService sequenceGeneratorService;
 
     @GetMapping(produces = "application/json")
     public List<Car> getAllCars() {
@@ -34,7 +38,9 @@ public class CarController {
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity createCar(@RequestBody CarDTO car) {
-        carService.create(Car.fromDTO(car));
+        Car carEntity = Car.fromDTO(car);
+        carEntity.setId(sequenceGeneratorService.generateSequence(Car.SEQUENCE_NAME));
+        carService.create(carEntity);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
