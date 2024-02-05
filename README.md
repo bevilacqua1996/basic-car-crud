@@ -22,4 +22,4 @@ _Verify_ step will execute integration tests. To do that, a MongoDB container wi
 
 ## Want to know more about?
 
-You can see more in the article that I have writen in Substack in this link: [Substack article]([https://pages.github.com/](https://bevilacqua96.substack.com/p/initialize-and-test-integration-between)https://bevilacqua96.substack.com/p/initialize-and-test-integration-between)
+You can see more in the article that I have writen in Substack in this link: [Substack article](https://bevilacqua96.substack.com/p/initialize-and-test-integration-between)
