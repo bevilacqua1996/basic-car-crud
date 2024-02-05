@@ -19,3 +19,7 @@ Make sure you have Docker installed on your environment.
 ``mvn verify``
 
 _Verify_ step will execute integration tests. To do that, a MongoDB container will be created on your local environment. If you don't have MongoDB image, it will be downloaded as well during the process. 
+
+## Want to know more about?
+
+You can see more in the article that I have writen in Substack in this link: [Substack article]([https://pages.github.com/](https://bevilacqua96.substack.com/p/initialize-and-test-integration-between)https://bevilacqua96.substack.com/p/initialize-and-test-integration-between)
